@@ -3,7 +3,7 @@
     "path": "~/LSTM neural  network/lstm-book/_quarto.yml",
     "project_path": "_quarto.yml",
     "type": "yaml",
-    "hash": "1512703677",
+    "hash": "3069940340",
     "contents": "",
     "dirty": false,
     "created": 1696035418837.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "6,9",
-        "scrollLine": "3"
+        "cursorPosition": "11,26",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1701064326,
+    "lastKnownWriteTime": 1701066507,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1701064326052,
+    "last_content_update": 1701066507525,
     "read_only": false,
     "read_only_alternatives": []
 }
