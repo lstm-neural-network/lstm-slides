@@ -1,0 +1,52 @@
+---
+title: "LSTM Recurrent Neural Networks"
+author: "Moise Brutus - Kevin Waisfeld - Michael Nhliziyo"
+format: revealjs
+---
+
+# Introduction
+
+## What is an LSTM?
+
+-   LSTM networks are a type of recurrent neural network that works well with sequential data, such as time series data and text.
+
+-   LSTMs overcome this challenge by regulating the weights with three "gates."
+
+-   We then plan on putting an LSTM model to the test by seeing how accurately it can predict financial time series data.
+
+## Applications of LSTMs
+
+-   LSTM networks were mainly created to solve the exploding/vanishing gradient problem
+
+# Data
+-  For this analysis, we'll be using historical time-series data for Apple, a corporation listed on the NASDAQ Stock Exchange.
+- We chose Apple due to its high trading volume and relatively low volatility
+- Thus, our data set contains 1,257 trading days, the amount of days in the last five years the stock market was at least partially open.
+## Variables
+
+-   Date : This represents a specific trading day that the market was at least partially open.
+
+-   Open : The price at the time of market opening on the given day.
+
+-   High : The highest price that the stock reached on the given day.
+
+-   Low : The lowest price that the stock reached on the given day.
+
+-   Close : The price at the time of market closing on the given day.
+
+## Additional Variables
+
+## Summary and Visualizations
+
+# Methodology
+
+## Neural Networks
+
+## Gates
+
+-   They are composed of four components; the cell,input gate, the output gate and a forget gate.
+-   The gates are responsible for processing and regulating the information flowing in and out of the cell.
+
+## Activation Functions
+
+# Analysis

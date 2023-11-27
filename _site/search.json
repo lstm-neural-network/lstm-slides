@@ -1,0 +1,65 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "lstm-book",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "slides.html#what-is-an-lstm",
+    "href": "slides.html#what-is-an-lstm",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "What is an LSTM?",
+    "text": "What is an LSTM?\n\nLSTM networks are a type of recurrent neural network that works well with sequential data, such as time series data and text.\nLSTMs overcome this challenge by regulating the weights with three “gates.”\nWe then plan on putting an LSTM model to the test by seeing how accurately it can predict financial time series data."
+  },
+  {
+    "objectID": "slides.html#applications-of-lstms",
+    "href": "slides.html#applications-of-lstms",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Applications of LSTMs",
+    "text": "Applications of LSTMs\n\nLSTM networks were mainly created to solve the exploding/vanishing gradient problem"
+  },
+  {
+    "objectID": "slides.html#additional-variables",
+    "href": "slides.html#additional-variables",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Additional Variables",
+    "text": "Additional Variables"
+  },
+  {
+    "objectID": "slides.html#summary-and-visualizations",
+    "href": "slides.html#summary-and-visualizations",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Summary and Visualizations",
+    "text": "Summary and Visualizations"
+  },
+  {
+    "objectID": "slides.html#neural-networks",
+    "href": "slides.html#neural-networks",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Neural Networks",
+    "text": "Neural Networks"
+  },
+  {
+    "objectID": "slides.html#gates",
+    "href": "slides.html#gates",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Gates",
+    "text": "Gates\n\nThey are composed of four components; the cell,input gate, the output gate and a forget gate.\nThe gates are responsible for processing and regulating the information flowing in and out of the cell."
+  },
+  {
+    "objectID": "slides.html#activation-functions",
+    "href": "slides.html#activation-functions",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Activation Functions",
+    "text": "Activation Functions"
+  }
+]
