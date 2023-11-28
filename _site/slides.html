@@ -344,61 +344,250 @@ Moise Brutus - Kevin Waisfeld - Michael Nhliziyo
 <h2>What is an LSTM?</h2>
 <ul>
 <li><p>LSTM networks are a type of recurrent neural network that works well with sequential data, such as time series data and text.</p></li>
-<li><p>LSTMs overcome this challenge by regulating the weights with three “gates.”</p></li>
+<li><p>Such sequence prediction problems involve predicting the next value based on a given input.</p></li>
 <li><p>We then plan on putting an LSTM model to the test by seeing how accurately it can predict financial time series data.</p></li>
-</ul>
-</section>
-<section id="applications-of-lstms" class="slide level2">
-<h2>Applications of LSTMs</h2>
-<ul>
-<li>LSTM networks were mainly created to solve the exploding/vanishing gradient problem</li>
+<li><p>LSTM networks were mainly created to solve the exploding/vanishing gradient problem</p></li>
+<li><p>Their capacity to model and understand long range dependencies makes them critical in executing various tasks.</p></li>
 </ul>
 </section></section>
 <section>
 <section id="data" class="title-slide slide level1 center">
 <h1>Data</h1>
+
+</section>
+<section id="background-on-the-data" class="slide level2">
+<h2>Background on the data</h2>
 <ul>
-<li><p>For this analysis, we’ll be using historical time-series data for Apple, a corporation listed on the NASDAQ Stock Exchange.</p></li>
-<li><p>We chose Apple due to its high trading volume and relatively low volatility</p></li>
-<li><p>Thus, our data set contains 1,257 trading days, the amount of days in the last five years the stock market was at least partially open. ## Variables</p></li>
-<li><p>Date : This represents a specific trading day that the market was at least partially open.</p></li>
-<li><p>Open : The price at the time of market opening on the given day.</p></li>
-<li><p>High : The highest price that the stock reached on the given day.</p></li>
-<li><p>Low : The lowest price that the stock reached on the given day.</p></li>
-<li><p>Close : The price at the time of market closing on the given day.</p></li>
+<li><p>For this analysis, we’ll be using historical time-series data for Apple and General Motors, a corporation listed on the NASDAQ Stock Exchange.</p></li>
+<li><p>The data is sourced from Yahoo Finance using the yfinance package in python.</p></li>
+<li><p>The resulting data file is relatively simple, comprised of only seven columns, with each row representing an individual trading day going back to five years.</p></li>
+</ul>
+</section>
+<section id="variables" class="slide level2">
+<h2>Variables</h2>
+<ul>
+<li><p><strong>Date</strong> : This represents a specific trading day that the market was at least partially open.</p></li>
+<li><p><strong>Open</strong> : The price at the time of market opening on the given day.</p></li>
+<li><p><strong>High</strong> : The highest price that the stock reached on the given day.</p></li>
+<li><p><strong>Low</strong> : The lowest price that the stock reached on the given day.</p></li>
+<li><p><strong>Close</strong> : The price at the time of market closing on the given day.</p></li>
 </ul>
 </section>
 <section id="additional-variables" class="slide level2">
 <h2>Additional Variables</h2>
+<ul>
+<li><p>In addition to the variables to the standard variables fetched from the Yahoo Finance API, we created our own columns to add to the dataset.</p></li>
+<li><p>Simple Moving Average : A simple moving average (SMA) is created by taking the mean closing price of a stock over a given number of periods.</p></li>
+<li><p>Exponential Moving Average : EMA’s give additional weight to the most recent days.</p></li>
+</ul>
 </section>
-<section id="summary-and-visualizations" class="slide level2">
-<h2>Summary and Visualizations</h2>
-</section></section>
+<section id="data-summary" class="slide level2">
+<h2>Data Summary</h2>
+
+<img data-src=".\datasummary.png" width="733" class="r-stretch quarto-figure-center"></section></section>
 <section>
 <section id="methodology" class="title-slide slide level1 center">
 <h1>Methodology</h1>
 
 </section>
-<section id="neural-networks" class="slide level2">
-<h2>Neural Networks</h2>
+<section id="activation-functions" class="slide level2">
+<h2>Activation Functions</h2>
+<ul>
+<li><p>The sigmoid and tanh activation functions are crucial for the different gates and operations of the LSTM architecture in a network.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src=".\activationfun.png" width="473"></p>
+</figure>
+</div></li>
+<li><p>The sigmiod activaton function outputs a value between 0 and 1.</p></li>
+<li><p>The tanh activation function outputs a value between -1 and 1.</p></li>
+</ul>
 </section>
 <section id="gates" class="slide level2">
 <h2>Gates</h2>
 <ul>
-<li>They are composed of four components; the cell,input gate, the output gate and a forget gate.</li>
-<li>The gates are responsible for processing and regulating the information flowing in and out of the cell.</li>
+<li><p>They are composed of four components; the cell,input gate, the output gate and a forget gate.</p></li>
+<li><p>The gates are responsible for processing and regulating the information flowing in and out of the cell.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src=".\lstm.jpeg" width="500"></p>
+</figure>
+</div></li>
 </ul>
 </section>
-<section id="activation-functions" class="slide level2">
-<h2>Activation Functions</h2>
+<section id="forget-gate" class="slide level2">
+<h2>Forget Gate</h2>
+<ul>
+<li><p>The forget gate is responsible for discarding the information which is not gonna used in the next steps.</p></li>
+<li><p>The closer the value of the information passed through the forget is to 0, the more likely is to be forgotten.</p></li>
+</ul>
+</section>
+<section id="input-gate" class="slide level2">
+<h2>Input Gate</h2>
+<ul>
+<li><p>The input gate charge of choosing which new data points to include in the cell state at a certain time step.</p></li>
+<li><p>The input gate regulates the information flow by producing values between 0 and 1 using a sigmoid activation function.</p></li>
+</ul>
+</section>
+<section id="output-gate" class="slide level2">
+<h2>Output Gate</h2>
+<ul>
+<li><p>The output gate decides which cell state data should be carried over to the following time step and added to the network’s output</p></li>
+<li><p>It makes use of a sigmoid activation function and is essential to the LSTM’s capacity to provide outputs that are aware of context.</p></li>
+</ul>
 </section></section>
+<section>
 <section id="analysis" class="title-slide slide level1 center">
 <h1>Analysis</h1>
+
+</section>
+<section id="implentation" class="slide level2">
+<h2>Implentation</h2>
+<ul>
+<li>Python</li>
+<li>Pandas</li>
+<li>Numpy</li>
+<li>Tensorflow</li>
+<li>Keras</li>
+<li>Matplotlib</li>
+</ul>
+</section>
+<section id="pre-processing" class="slide level2">
+<h2>Pre-Processing</h2>
+<ul>
+<li><p>Standardization</p></li>
+<li><p>Normalization</p></li>
+<li><p>80/20 Shuffled Split</p></li>
+</ul>
+</section>
+<section id="lstm-model" class="slide level2">
+<h2>LSTM Model</h2>
+<p>LSTM_modelApple = ke.Sequential() LSTM_modelApple.add(LSTM(128, return_sequences=True, input_shape=(LSTM_Xtrain1.shape[1], 1))) LSTM_modelApple.add(LSTM(64, return_sequences=False)) LSTM_modelApple.add(Dense(25, activation=‘linear’)) LSTM_modelApple.add(Dense(1))</p>
+</section>
+<section id="model-summary" class="slide level2">
+<h2>Model Summary</h2>
+
+<img data-src=".\ag1.png" class="r-stretch quarto-figure-center"></section>
+<section id="model-summary-1" class="slide level2">
+<h2>Model Summary</h2>
+
+<img data-src=".\ag2.png" class="r-stretch quarto-figure-center"></section></section>
+<section>
+<section id="results" class="title-slide slide level1 center">
+<h1>Results</h1>
+
+</section>
+<section id="results-1" class="slide level2">
+<h2>Results</h2>
+<ul>
+<li><p>Model was able to predict results of Apple’s stock price exceptionally well</p></li>
+<li><p>While 270 days looks a little messy on a chart, the predicted stock price was very close to the actual stock price on both the first 50 days of the dataset and the last 50</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src=".\sg1.png"></p>
+</figure>
+</div></li>
+</ul>
+</section>
+<section id="results-cont." class="slide level2">
+<h2>Results Cont.</h2>
+<ul>
+<li><p>We also wanted to look at how the model would work at predicting days that were completely unseen in the dataset.</p></li>
+<li><p>Our model was based on stock data running through the end of October 2023. So we picked two additional days in November to see how the model performs.</p></li>
+<li><p>We saw that the predicted price for the two days we chose were also very close to the actual price.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src=".\sg2.JPG.png" width="1009"></p>
+</figure>
+</div></li>
+</ul>
+</section>
+<section id="results-cont.-1" class="slide level2">
+<h2>Results Cont.</h2>
+<ul>
+<li><p>During the time-span of our dataset, Apple’s stock had relatively low volatility and was a consistently rising stock. So we also wanted to see how the LSTM model performed on a stock that has been on a different trajectory.</p></li>
+<li><p>We also wanted to see it’s performance on another industry and sector of the economy, which is how we landed on General Motors.</p></li>
+</ul>
+</section>
+<section id="results-cont.-2" class="slide level2">
+<h2>Results Cont.</h2>
+<ul>
+<li><p>During the same timespan, General Motors stock has had far more volatility and has been mostly stagnant.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src=".\sg3.JPG" width="1507"></p>
+</figure>
+</div></li>
+</ul>
+</section>
+<section id="results-cont.-3" class="slide level2">
+<h2>Results Cont.</h2>
+<ul>
+<li><p>We saw the LSTM model perform just as well on the General Motors stock as it did on the Apple stock. We also saw good results when picking two days in November 2023, which were not contained in the original dataset.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src=".\sg4.JPG" width="1054"></p>
+</figure>
+</div></li>
+</ul>
+</section>
+<section id="results-cont.-4" class="slide level2">
+<h2>Results Cont.</h2>
+<ul>
+<li><p>The number of epochs is an important hyperparameter that went into our analysis. With too few epochs, underfitting is a possibility. With too many epochs, overfitting the data is also a possibility.</p></li>
+<li><p>We were able to run some tests with our data to see how the data performs based on the number of epochs selected.</p></li>
+</ul>
+</section>
+<section id="results-cont.-5" class="slide level2">
+<h2>Results Cont.</h2>
+<ul>
+<li><p>We see both the underfitting and overfitting dilemma when looking at both extremes, only running 25 epochs or running 200.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src=".\sg5.JPG"></p>
+</figure>
+</div></li>
+</ul>
+</section></section>
+<section>
+<section id="conclusion" class="title-slide slide level1 center">
+<h1>Conclusion</h1>
+
+</section>
+<section id="conclusion-1" class="slide level2">
+<h2>Conclusion</h2>
+<ul>
+<li><p>We were able to build an LSTM model to accurately predict the price of a stock based on it’s previous history, including previous closing prices and trading volume.</p></li>
+<li><p>We tested our hyperparameters to find the best options for our model and adjusted it accordingly.</p></li>
+<li><p>We were also able to replicate the success of our model using another, unrelated stock which has had a significantly different history.</p></li>
+<li><p>Ultimately, our success shows that it might be possible to accurately predict stock market data using a time-series analysis such as LSTM.</p></li>
+</ul>
+</section>
+<section id="conclusion-cont." class="slide level2">
+<h2>Conclusion Cont.</h2>
+<ul>
+<li><p>At the same time, there are some caveats to consider. While the prediction price is very close to the actual price, there is a difference. In commodity markets, a small difference can make a huge impact on whether trades are successful or not, especially in short-term trading.</p></li>
+<li><p>Just because we can get close to a prediction price doesn’t mean that using such a model is a wise trading strategy (which we would never suggest anyways!)</p></li>
+<li><p>More research is required on using LSTM models in the financial markets, including during times of recession and economic downturn.</p></li>
+</ul>
+</section>
+<section id="conclusion-cont.-1" class="slide level2">
+<h2>Conclusion Cont.</h2>
+<ul>
+<li><p>Another caveat to consider is what the LSTM model is using to make its predictions. As it’s a time-series analysis, the LSTM model is using history from previous trading days. It’s then spitting out a result that very closely mimics the previous days price. In the long-term, predicting that tomorrow’s closing price will be very close to today’s closing price is generally going to be successful, but it doesn’t make it a good trading strategy.</p></li>
+<li><p>When we overlay a line of a stock’s closing price with another line of it’s one-day closing price (that is, the closing price the previous day), we see quite good results.</p></li>
+</ul>
+</section>
+<section id="conclusion-cont.-2" class="slide level2">
+<h2>Conclusion Cont.</h2>
+<ul>
+<li>Ultimately, our research and experiment has found that LSTM models do possess predictive capability when it comes to the financial markets, but that more research must be done before such models can have a major impact on financial markets.</li>
+</ul>
 
 <div class="footer footer-default">
 
 </div>
-</section>
+</section></section>
     </div>
   </div>
 

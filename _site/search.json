@@ -18,7 +18,7 @@
     "href": "slides.html#what-is-an-lstm",
     "title": "LSTM Recurrent Neural Networks",
     "section": "What is an LSTM?",
-    "text": "What is an LSTM?\n\nLSTM networks are a type of recurrent neural network that works well with sequential data, such as time series data and text.\nLSTMs overcome this challenge by regulating the weights with three “gates.”\nWe then plan on putting an LSTM model to the test by seeing how accurately it can predict financial time series data."
+    "text": "What is an LSTM?\n\nLSTM networks are a type of recurrent neural network that works well with sequential data, such as time series data and text.\nSuch sequence prediction problems involve predicting the next value based on a given input.\nWe then plan on putting an LSTM model to the test by seeing how accurately it can predict financial time series data.\nLSTM networks were mainly created to solve the exploding/vanishing gradient problem\nTheir capacity to model and understand long range dependencies makes them critical in executing various tasks."
   },
   {
     "objectID": "slides.html#applications-of-lstms",
@@ -32,7 +32,7 @@
     "href": "slides.html#additional-variables",
     "title": "LSTM Recurrent Neural Networks",
     "section": "Additional Variables",
-    "text": "Additional Variables"
+    "text": "Additional Variables\n\nIn addition to the variables to the standard variables fetched from the Yahoo Finance API, we created our own columns to add to the dataset.\nSimple Moving Average : A simple moving average (SMA) is created by taking the mean closing price of a stock over a given number of periods.\nExponential Moving Average : EMA’s give additional weight to the most recent days."
   },
   {
     "objectID": "slides.html#summary-and-visualizations",
@@ -60,6 +60,209 @@
     "href": "slides.html#activation-functions",
     "title": "LSTM Recurrent Neural Networks",
     "section": "Activation Functions",
-    "text": "Activation Functions"
+    "text": "Activation Functions\n\nThe sigmoid and tanh activation functions are crucial for the different gates and operations of the LSTM architecture in a network.\n\n\n\n\n\nThe sigmiod activaton function outputs a value between 0 and 1.\nThe tanh activation function outputs a value between -1 and 1."
+  },
+  {
+    "objectID": "slides.html#background-on-data",
+    "href": "slides.html#background-on-data",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Background on Data",
+    "text": "Background on Data\n\nFor this analysis, we’ll be using historical time-series data for Apple, a corporation listed on the NASDAQ Stock Exchange.\nWe chose Apple due to its high trading volume and relatively low volatility\nThus, our data set contains 1,257 trading days, the amount of days in the last five years the stock market was at least partially open.\nThe resulting data file is relatively simple, comprised of only seven columns, with each row representing an individual trading day going back to five years."
+  },
+  {
+    "objectID": "slides.html#variables",
+    "href": "slides.html#variables",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Variables",
+    "text": "Variables\n\nDate : This represents a specific trading day that the market was at least partially open.\nOpen : The price at the time of market opening on the given day.\nHigh : The highest price that the stock reached on the given day.\nLow : The lowest price that the stock reached on the given day.\nClose : The price at the time of market closing on the given day."
+  },
+  {
+    "objectID": "slides.html#results-1",
+    "href": "slides.html#results-1",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Results",
+    "text": "Results\n\nModel was able to predict results of Apple’s stock price exceptionally well\nWhile 270 days looks a little messy on a chart, the predicted stock price was very close to the actual stock price on both the first 50 days of the dataset and the last 50"
+  },
+  {
+    "objectID": "slides.html#results-2",
+    "href": "slides.html#results-2",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Results",
+    "text": "Results\n\nDuring the same timespan, General Motors stock has had far more volatility and has been mostly stagnant."
+  },
+  {
+    "objectID": "slides.html#results-3",
+    "href": "slides.html#results-3",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Results",
+    "text": "Results\n\nWe also wanted to look at how the model would work at predicting days that were completely unseen in the dataset.\nOur model was based on stock data running through the end of October 2023. So we picked two additional days in November to see how the model performs.\nWe saw that the predicted price for the two days we chose were also very close to the actual price."
+  },
+  {
+    "objectID": "slides.html#results-4",
+    "href": "slides.html#results-4",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Results",
+    "text": "Results\n\nDuring the time-span of our dataset, Apple’s stock had relatively low volatility and was a consistently rising stock. So we also wanted to see how the LSTM model performed on a stock that has been on a different trajectory.\nWe also wanted to see it’s performance on another industry and sector of the economy, which is how we landed on General Motors.\nDuring the same timespan, General Motors stock has had far more volatility and has been mostly stagnant."
+  },
+  {
+    "objectID": "slides.html#results-5",
+    "href": "slides.html#results-5",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Results",
+    "text": "Results\n\nWe saw the LSTM model perform just as well on the General Motors stock as it did on the Apple stock. We also saw good results when picking two days in November 2023, which were not contained in the original dataset."
+  },
+  {
+    "objectID": "slides.html#results-6",
+    "href": "slides.html#results-6",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Results",
+    "text": "Results\n-The number of epochs is an important hyperparameter that went into our analysis. With too few epochs, underfitting is a possibility. With too many epochs, overfitting the data is also a possibility.\n\nWe were able to run some tests with our data to see how the data performs based on the number of epochs selected.\nWe see both the underfitting and overfitting dilemma when looking at both extremes, only running 25 epochs or running 200."
+  },
+  {
+    "objectID": "slides.html#conclusion-1",
+    "href": "slides.html#conclusion-1",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Conclusion",
+    "text": "Conclusion\n\nWe were able to build an LSTM model to accurately predict the price of a stock based on it’s previous history, including previous closing prices and trading volume.\nWe tested our hyperparameters to find the best options for our model and adjusted it accordingly.\nWe were also able to replicate the success of our model using another, unrelated stock which has had a significantly different history.\nUltimately, our success shows that it might be possible to accurately predict stock market data using a time-series analysis such as LSTM."
+  },
+  {
+    "objectID": "slides.html#background-on-the-data",
+    "href": "slides.html#background-on-the-data",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Background on the data",
+    "text": "Background on the data\n\nFor this analysis, we’ll be using historical time-series data for Apple and General Motors, a corporation listed on the NASDAQ Stock Exchange.\nThe data is sourced from Yahoo Finance using the yfinance package in python.\nThe resulting data file is relatively simple, comprised of only seven columns, with each row representing an individual trading day going back to five years."
+  },
+  {
+    "objectID": "slides.html#implentation",
+    "href": "slides.html#implentation",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Implentation",
+    "text": "Implentation\n\nPython\nPandas\nNumpy\nTensorflow\nKeras\nMatplotlib"
+  },
+  {
+    "objectID": "slides.html#pre-processing",
+    "href": "slides.html#pre-processing",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Pre-Processing",
+    "text": "Pre-Processing\n\nStandardization\nNormalization\n80/20 Shuffled Split"
+  },
+  {
+    "objectID": "slides.html#lstm-model",
+    "href": "slides.html#lstm-model",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "LSTM Model",
+    "text": "LSTM Model\nLSTM_modelApple = ke.Sequential() LSTM_modelApple.add(LSTM(128, return_sequences=True, input_shape=(LSTM_Xtrain1.shape[1], 1))) LSTM_modelApple.add(LSTM(64, return_sequences=False)) LSTM_modelApple.add(Dense(25, activation=‘linear’)) LSTM_modelApple.add(Dense(1))"
+  },
+  {
+    "objectID": "slides.html#model-summary",
+    "href": "slides.html#model-summary",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Model Summary",
+    "text": "Model Summary"
+  },
+  {
+    "objectID": "slides.html#model-summary-1",
+    "href": "slides.html#model-summary-1",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Model Summary",
+    "text": "Model Summary"
+  },
+  {
+    "objectID": "slides.html#results",
+    "href": "slides.html#results",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Results",
+    "text": "Results\n\nModel was able to predict results of Apple’s stock price exceptionally well\nWhile 270 days looks a little messy on a chart, the predicted stock price was very close to the actual stock price on both the first 50 days of the dataset and the last 50"
+  },
+  {
+    "objectID": "slides.html#results-cont.",
+    "href": "slides.html#results-cont.",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Results Cont.",
+    "text": "Results Cont.\n\nWe also wanted to look at how the model would work at predicting days that were completely unseen in the dataset.\nOur model was based on stock data running through the end of October 2023. So we picked two additional days in November to see how the model performs.\nWe saw that the predicted price for the two days we chose were also very close to the actual price."
+  },
+  {
+    "objectID": "slides.html#results-cont.-1",
+    "href": "slides.html#results-cont.-1",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Results Cont.",
+    "text": "Results Cont.\n\nDuring the time-span of our dataset, Apple’s stock had relatively low volatility and was a consistently rising stock. So we also wanted to see how the LSTM model performed on a stock that has been on a different trajectory.\nWe also wanted to see it’s performance on another industry and sector of the economy, which is how we landed on General Motors."
+  },
+  {
+    "objectID": "slides.html#results-cont.-2",
+    "href": "slides.html#results-cont.-2",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Results Cont.",
+    "text": "Results Cont.\n\nDuring the same timespan, General Motors stock has had far more volatility and has been mostly stagnant."
+  },
+  {
+    "objectID": "slides.html#results-cont.-3",
+    "href": "slides.html#results-cont.-3",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Results Cont.",
+    "text": "Results Cont.\n\nWe saw the LSTM model perform just as well on the General Motors stock as it did on the Apple stock. We also saw good results when picking two days in November 2023, which were not contained in the original dataset."
+  },
+  {
+    "objectID": "slides.html#conclusion-cont.",
+    "href": "slides.html#conclusion-cont.",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Conclusion Cont.",
+    "text": "Conclusion Cont.\n\nAt the same time, there are some caveats to consider. While the prediction price is very close to the actual price, there is a difference. In commodity markets, a small difference can make a huge impact on whether trades are successful or not, especially in short-term trading.\nJust because we can get close to a prediction price doesn’t mean that using such a model is a wise trading strategy (which we would never suggest anyways!)\nMore research is required on using LSTM models in the financial markets, including during times of recession and economic downturn."
+  },
+  {
+    "objectID": "slides.html#conclusion-cont.-1",
+    "href": "slides.html#conclusion-cont.-1",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Conclusion Cont.",
+    "text": "Conclusion Cont.\n\nAnother caveat to consider is what the LSTM model is using to make its predictions. As it’s a time-series analysis, the LSTM model is using history from previous trading days. It’s then spitting out a result that very closely mimics the previous days price. In the long-term, predicting that tomorrow’s closing price will be very close to today’s closing price is generally going to be successful, but it doesn’t make it a good trading strategy.\nWhen we overlay a line of a stock’s closing price with another line of it’s one-day closing price (that is, the closing price the previous day), we see quite good results."
+  },
+  {
+    "objectID": "slides.html#data-summary",
+    "href": "slides.html#data-summary",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Data Summary",
+    "text": "Data Summary"
+  },
+  {
+    "objectID": "slides.html#forget-gate",
+    "href": "slides.html#forget-gate",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Forget Gate",
+    "text": "Forget Gate\n\nThe forget gate is responsible for discarding the information which is not gonna used in the next steps.\nThe closer the value of the information passed through the forget is to 0, the more likely is to be forgotten."
+  },
+  {
+    "objectID": "slides.html#input-gate",
+    "href": "slides.html#input-gate",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Input Gate",
+    "text": "Input Gate\n\nThe input gate charge of choosing which new data points to include in the cell state at a certain time step.\nThe input gate regulates the information flow by producing values between 0 and 1 using a sigmoid activation function."
+  },
+  {
+    "objectID": "slides.html#output-gate",
+    "href": "slides.html#output-gate",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Output Gate",
+    "text": "Output Gate\n\nThe output gate decides which cell state data should be carried over to the following time step and added to the network’s output\nIt makes use of a sigmoid activation function and is essential to the LSTM’s capacity to provide outputs that are aware of context."
+  },
+  {
+    "objectID": "slides.html#results-cont.-4",
+    "href": "slides.html#results-cont.-4",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Results Cont.",
+    "text": "Results Cont.\n\nThe number of epochs is an important hyperparameter that went into our analysis. With too few epochs, underfitting is a possibility. With too many epochs, overfitting the data is also a possibility.\nWe were able to run some tests with our data to see how the data performs based on the number of epochs selected."
+  },
+  {
+    "objectID": "slides.html#conclusion-cont.-2",
+    "href": "slides.html#conclusion-cont.-2",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Conclusion Cont.",
+    "text": "Conclusion Cont.\n\nUltimately, our research and experiment has found that LSTM models do possess predictive capability when it comes to the financial markets, but that more research must be done before such models can have a major impact on financial markets."
+  },
+  {
+    "objectID": "slides.html#results-cont.-5",
+    "href": "slides.html#results-cont.-5",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Results Cont.",
+    "text": "Results Cont.\n\nWe see both the underfitting and overfitting dilemma when looking at both extremes, only running 25 epochs or running 200."
   }
 ]
