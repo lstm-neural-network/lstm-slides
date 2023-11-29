@@ -119,7 +119,7 @@ LSTM_modelApple = ke.Sequential() LSTM_modelApple.add(LSTM(128, return_sequences
 
 ## Model Summary
 
-![](/ag2.png){fig-align="center"}
+![](/image.webp){fig-align="center" width="2462"}
 
 # Results
 
