@@ -343,11 +343,17 @@ Moise Brutus - Kevin Waisfeld - Michael Nhliziyo
 <section id="what-is-an-lstm" class="slide level2">
 <h2>What is an LSTM?</h2>
 <ul>
-<li><p>LSTM networks are a type of recurrent neural network that works well with sequential data, such as time series data and text.</p></li>
-<li><p>Such sequence prediction problems involve predicting the next value based on a given input.</p></li>
-<li><p>We then plan on putting an LSTM model to the test by seeing how accurately it can predict financial time series data.</p></li>
-<li><p>LSTM networks were mainly created to solve the exploding/vanishing gradient problem</p></li>
+<li><p>Long Short-Term Memory networks are a type of recurrent neural network that works well with sequential data, such as time series data and text.</p></li>
 <li><p>Their capacity to model and understand long range dependencies makes them critical in executing various tasks.</p></li>
+<li><p>Such sequence prediction problems involve predicting the next value based on the previous input.</p></li>
+<li><p>LSTM networks were mainly created to solve the vanishing gradient problem.</p></li>
+</ul>
+</section>
+<section id="application-of-lstms" class="slide level2">
+<h2>Application of LSTMs</h2>
+<ul>
+<li><p>We plan on putting an LSTM model to the test by seeing how accurately it can predict financial time series data.</p></li>
+<li><p>While modeling financial data is an extremely difficult task due to the unpredictability of financial markets, we will explore whether they hold any potential to accurately predict short and medium term movements in stock prices.</p></li>
 </ul>
 </section></section>
 <section>
@@ -358,9 +364,10 @@ Moise Brutus - Kevin Waisfeld - Michael Nhliziyo
 <section id="background-on-the-data" class="slide level2">
 <h2>Background on the data</h2>
 <ul>
-<li><p>For this analysis, we’ll be using historical time-series data for Apple and General Motors, a corporation listed on the NASDAQ Stock Exchange.</p></li>
+<li><p>For this analysis, we’ll be using historical time-series stock data for Apple listed on the NASDAQ Stock Exchange and General Motors, which is listed on the New York Stock Exchange.</p></li>
 <li><p>The data is sourced from Yahoo Finance using the yfinance package in python.</p></li>
 <li><p>The resulting data file is relatively simple, comprised of only seven columns, with each row representing an individual trading day going back to five years.</p></li>
+<li><p>Our resulting dataset contains 1,238 trading days.</p></li>
 </ul>
 </section>
 <section id="variables" class="slide level2">
@@ -371,12 +378,15 @@ Moise Brutus - Kevin Waisfeld - Michael Nhliziyo
 <li><p><strong>High</strong> : The highest price that the stock reached on the given day.</p></li>
 <li><p><strong>Low</strong> : The lowest price that the stock reached on the given day.</p></li>
 <li><p><strong>Close</strong> : The price at the time of market closing on the given day.</p></li>
+<li><p>Adj Close : The closing stock price adjusted for any corporate actions such as dividends and stock splits.</p></li>
+<li><p>Volume : The total number of shares traded on the given day.</p></li>
 </ul>
 </section>
 <section id="additional-variables" class="slide level2">
 <h2>Additional Variables</h2>
 <ul>
 <li><p>In addition to the variables to the standard variables fetched from the Yahoo Finance API, we created our own columns to add to the dataset.</p></li>
+<li><p>Percent Change : This variable calculates what percent the price changed from the previous closing price.</p></li>
 <li><p>Simple Moving Average : A simple moving average (SMA) is created by taking the mean closing price of a stock over a given number of periods.</p></li>
 <li><p>Exponential Moving Average : EMA’s give additional weight to the most recent days.</p></li>
 </ul>
@@ -390,6 +400,31 @@ Moise Brutus - Kevin Waisfeld - Michael Nhliziyo
 <h1>Methodology</h1>
 
 </section>
+<section id="rnn" class="slide level2">
+<h2>RNN</h2>
+<ul>
+<li><p>Recurrent Neural Networks (RNNs) are a type of artificial neural network designed for processing sequential data.</p></li>
+<li><p>The fundamental idea behind an RNN is to maintain a hidden state vector that gets updated at each time step, incorporating information from both the current input and the previous hidden state.</p></li>
+<li><p>Most ANN’s are feed-forward neural networks, so they are all fully connected and loop free.</p></li>
+<li><p>RNN’s also need to be trained differently, as backpropgation on its own does not feed any information back to previous steps.</p></li>
+</ul>
+</section>
+<section id="rnn-1" class="slide level2">
+<h2>RNN</h2>
+<ul>
+<li><p>Unlike ANN’s, a RNN uses a circular connection to previous steps, therefore going back in time.</p>
+<p><img data-src=".\RNN.JPG"></p></li>
+</ul>
+</section>
+<section id="rnn-2" class="slide level2">
+<h2>RNN</h2>
+<ul>
+<li><p>Traditional RNNS still run into the issue of vanishing gradients.</p></li>
+<li><p>Vanishing gradient problem occurs when the gradients become too small due to back propagation.</p></li>
+<li><p>It’s particularly problematic in deep networks where gradients can diminish exponentially as they are backpropagated through time, making it difficult for the model to learn long-range dependencies in sequential data.</p></li>
+<li><p>An LSTM is a form of RNN.</p></li>
+</ul>
+</section>
 <section id="activation-functions" class="slide level2">
 <h2>Activation Functions</h2>
 <ul>
@@ -399,15 +434,15 @@ Moise Brutus - Kevin Waisfeld - Michael Nhliziyo
 <p><img data-src=".\activationfun.png" width="473"></p>
 </figure>
 </div></li>
-<li><p>The sigmiod activaton function outputs a value between 0 and 1.</p></li>
+<li><p>The sigmoid activaton function outputs a value between 0 and 1.</p></li>
 <li><p>The tanh activation function outputs a value between -1 and 1.</p></li>
 </ul>
 </section>
 <section id="gates" class="slide level2">
 <h2>Gates</h2>
 <ul>
-<li><p>They are composed of four components; the cell,input gate, the output gate and a forget gate.</p></li>
-<li><p>The gates are responsible for processing and regulating the information flowing in and out of the cell.</p>
+<li><p>The gates are responsible for processing and regulating the information flowing in and out of the cell.</p></li>
+<li><p>They are composed of four gates;input gate, the output gate and a forget gate.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src=".\lstm.jpeg" width="500"></p>
@@ -418,22 +453,37 @@ Moise Brutus - Kevin Waisfeld - Michael Nhliziyo
 <section id="forget-gate" class="slide level2">
 <h2>Forget Gate</h2>
 <ul>
-<li><p>The forget gate is responsible for discarding the information which is not gonna used in the next steps.</p></li>
-<li><p>The closer the value of the information passed through the forget is to 0, the more likely is to be forgotten.</p></li>
+<li><p>The forget gate determines which information is discarded from the previous hidden state and current input.</p></li>
+<li><p>The closer the value of the information passed through the forget is to 0, the more likely is to be forgotten.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src=".\forget gate.JPG" width="1162"></p>
+</figure>
+</div></li>
 </ul>
 </section>
 <section id="input-gate" class="slide level2">
 <h2>Input Gate</h2>
 <ul>
-<li><p>The input gate charge of choosing which new data points to include in the cell state at a certain time step.</p></li>
-<li><p>The input gate regulates the information flow by producing values between 0 and 1 using a sigmoid activation function.</p></li>
+<li><p>The input gate is in charge of regulating which new information points to include in the network’s memory cell state.</p></li>
+<li><p>The input gate regulates the information flow by using the sigmoid function and the tanh function.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src=".\input gate.JPG" width="1065"></p>
+</figure>
+</div></li>
 </ul>
 </section>
 <section id="output-gate" class="slide level2">
 <h2>Output Gate</h2>
 <ul>
-<li><p>The output gate decides which cell state data should be carried over to the following time step and added to the network’s output</p></li>
-<li><p>It makes use of a sigmoid activation function and is essential to the LSTM’s capacity to provide outputs that are aware of context.</p></li>
+<li><p>The output gate decides which memory cell data should be carried over to the following time step and added to the network’s output</p></li>
+<li><p>It makes use of a sigmoid activation function.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src=".\output gate.JPG" width="1065"></p>
+</figure>
+</div></li>
 </ul>
 </section></section>
 <section>

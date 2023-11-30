@@ -8,25 +8,32 @@ format: revealjs
 
 ## What is an LSTM?
 
--   LSTM networks are a type of recurrent neural network that works well with sequential data, such as time series data and text.
-
--   Such sequence prediction problems involve predicting the next value based on a given input.
-
--   We then plan on putting an LSTM model to the test by seeing how accurately it can predict financial time series data.
-
--   LSTM networks were mainly created to solve the exploding/vanishing gradient problem
+-   Long Short-Term Memory networks are a type of recurrent neural network that works well with sequential data, such as time series data and text.
 
 -   Their capacity to model and understand long range dependencies makes them critical in executing various tasks.
+
+-   Such sequence prediction problems involve predicting the next value based on the previous input.
+
+-   LSTM networks were mainly created to solve the vanishing gradient problem.
+
+## Application of LSTMs
+
+-   We plan on putting an LSTM model to the test by seeing how accurately it can predict financial time series data.
+
+-   While modeling financial data is an extremely difficult task due to the unpredictability of financial markets, we will explore whether they hold any potential to accurately predict short and medium term movements in stock prices.
 
 # Data
 
 ## Background on the data
 
--   For this analysis, we'll be using historical time-series data for Apple and General Motors, a corporation listed on the NASDAQ Stock Exchange.
+-   For this analysis, we'll be using historical time-series stock data for Apple listed on the NASDAQ Stock Exchange and General Motors, which is listed on the New York Stock Exchange.
 
 -   The data is sourced from Yahoo Finance using the yfinance package in python.
 
 -   The resulting data file is relatively simple, comprised of only seven columns, with each row representing an individual trading day going back to five years.
+
+-   Our resulting dataset contains 1,238 trading days.
+
 
 ## Variables
 
@@ -40,9 +47,15 @@ format: revealjs
 
 -   **Close** : The price at the time of market closing on the given day.
 
+-   Adj Close : The closing stock price adjusted for any corporate actions such as dividends and stock splits.
+
+-   Volume : The total number of shares traded on the given day.
+
 ## Additional Variables
 
 -   In addition to the variables to the standard variables fetched from the Yahoo Finance API, we created our own columns to add to the dataset.
+
+-   Percent Change : This variable calculates what percent the price changed from the previous closing price.
 
 -   Simple Moving Average : A simple moving average (SMA) is created by taking the mean closing price of a stock over a given number of periods.
 
@@ -54,41 +67,73 @@ format: revealjs
 
 # Methodology
 
+## RNN
+
+-   Recurrent Neural Networks (RNNs) are a type of artificial neural network designed for processing sequential data.
+
+-   The fundamental idea behind an RNN is to maintain a hidden state vector that gets updated at each time step, incorporating information from both the current input and the previous hidden state.
+
+-   Most ANN's are feed-forward neural networks, so they are all fully connected and loop free.
+
+-   RNN's also need to be trained differently, as backpropgation on its own does not feed any information back to previous steps.
+
+## RNN
+
+-   Unlike ANN's, a RNN uses a circular connection to previous steps, therefore going back in time.
+
+    ![](/RNN.JPG)
+
+## RNN
+
+-   Traditional RNNS still run into the issue of vanishing gradients.
+
+-   Vanishing gradient problem occurs when the gradients become too small due to back propagation.
+
+-   It's particularly problematic in deep networks where gradients can diminish exponentially as they are backpropagated through time, making it difficult for the model to learn long-range dependencies in sequential data.
+
+-   An LSTM is a form of RNN.
+
 ## Activation Functions
 
 -   The sigmoid and tanh activation functions are crucial for the different gates and operations of the LSTM architecture in a network.
 
     ![](/activationfun.png){fig-align="center" width="473"}
 
--   The sigmiod activaton function outputs a value between 0 and 1.
+-   The sigmoid activaton function outputs a value between 0 and 1.
 
 -   The tanh activation function outputs a value between -1 and 1.
 
 ## Gates
 
--   They are composed of four components; the cell,input gate, the output gate and a forget gate.
-
 -   The gates are responsible for processing and regulating the information flowing in and out of the cell.
+
+-   They are composed of four gates;input gate, the output gate and a forget gate.
 
     ![](/lstm.jpeg){width="500" fig-align="center"}
 
 ## Forget Gate
 
--   The forget gate is responsible for discarding the information which is not gonna used in the next steps.
+-   The forget gate determines which information is discarded from the previous hidden state and current input.
 
 -   The closer the value of the information passed through the forget is to 0, the more likely is to be forgotten.
 
+    ![](/forget%20gate.JPG){width="1162" fig-align="center"}
+
 ## Input Gate
 
--   The input gate charge of choosing which new data points to include in the cell state at a certain time step.
+-   The input gate is in charge of regulating which new information points to include in the network's memory cell state.
 
--   The input gate regulates the information flow by producing values between 0 and 1 using a sigmoid activation function.
+-   The input gate regulates the information flow by using the sigmoid function and the tanh function.
+
+    ![](/input%20gate.JPG){width="1065" fig-align="center"}
 
 ## Output Gate
 
--   The output gate decides which cell state data should be carried over to the following time step and added to the network's output
+-   The output gate decides which memory cell data should be carried over to the following time step and added to the network's output
 
--   It makes use of a sigmoid activation function and is essential to the LSTM's capacity to provide outputs that are aware of context.
+-   It makes use of a sigmoid activation function.
+
+    ![](/output%20gate.JPG){width="1065" fig-align="center"}
 
 # Analysis
 

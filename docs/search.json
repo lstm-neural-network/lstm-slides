@@ -4,7 +4,7 @@
     "href": "slides.html#what-is-an-lstm",
     "title": "LSTM Recurrent Neural Networks",
     "section": "What is an LSTM?",
-    "text": "What is an LSTM?\n\nLSTM networks are a type of recurrent neural network that works well with sequential data, such as time series data and text.\nSuch sequence prediction problems involve predicting the next value based on a given input.\nWe then plan on putting an LSTM model to the test by seeing how accurately it can predict financial time series data.\nLSTM networks were mainly created to solve the exploding/vanishing gradient problem\nTheir capacity to model and understand long range dependencies makes them critical in executing various tasks."
+    "text": "What is an LSTM?\n\nLong Short-Term Memory networks are a type of recurrent neural network that works well with sequential data, such as time series data and text.\nTheir capacity to model and understand long range dependencies makes them critical in executing various tasks.\nSuch sequence prediction problems involve predicting the next value based on the previous input.\nLSTM networks were mainly created to solve the vanishing gradient problem."
   },
   {
     "objectID": "slides.html#applications-of-lstms",
@@ -18,7 +18,7 @@
     "href": "slides.html#additional-variables",
     "title": "LSTM Recurrent Neural Networks",
     "section": "Additional Variables",
-    "text": "Additional Variables\n\nIn addition to the variables to the standard variables fetched from the Yahoo Finance API, we created our own columns to add to the dataset.\nSimple Moving Average : A simple moving average (SMA) is created by taking the mean closing price of a stock over a given number of periods.\nExponential Moving Average : EMA’s give additional weight to the most recent days."
+    "text": "Additional Variables\n\nIn addition to the variables to the standard variables fetched from the Yahoo Finance API, we created our own columns to add to the dataset.\nPercent Change : This variable calculates what percent the price changed from the previous closing price.\nSimple Moving Average : A simple moving average (SMA) is created by taking the mean closing price of a stock over a given number of periods.\nExponential Moving Average : EMA’s give additional weight to the most recent days."
   },
   {
     "objectID": "slides.html#summary-and-visualizations",
@@ -39,14 +39,14 @@
     "href": "slides.html#gates",
     "title": "LSTM Recurrent Neural Networks",
     "section": "Gates",
-    "text": "Gates\n\nThey are composed of four components; the cell,input gate, the output gate and a forget gate.\nThe gates are responsible for processing and regulating the information flowing in and out of the cell."
+    "text": "Gates\n\nThe gates are responsible for processing and regulating the information flowing in and out of the cell.\nThey are composed of four gates;input gate, the output gate and a forget gate."
   },
   {
     "objectID": "slides.html#activation-functions",
     "href": "slides.html#activation-functions",
     "title": "LSTM Recurrent Neural Networks",
     "section": "Activation Functions",
-    "text": "Activation Functions\n\nThe sigmoid and tanh activation functions are crucial for the different gates and operations of the LSTM architecture in a network.\n\n\n\n\n\nThe sigmiod activaton function outputs a value between 0 and 1.\nThe tanh activation function outputs a value between -1 and 1."
+    "text": "Activation Functions\n\nThe sigmoid and tanh activation functions are crucial for the different gates and operations of the LSTM architecture in a network.\n\n\n\n\n\nThe sigmoid activaton function outputs a value between 0 and 1.\nThe tanh activation function outputs a value between -1 and 1."
   },
   {
     "objectID": "index.html",
@@ -67,14 +67,14 @@
     "href": "slides.html#background-on-the-data",
     "title": "LSTM Recurrent Neural Networks",
     "section": "Background on the data",
-    "text": "Background on the data\n\nFor this analysis, we’ll be using historical time-series data for Apple and General Motors, a corporation listed on the NASDAQ Stock Exchange.\nThe data is sourced from Yahoo Finance using the yfinance package in python.\nThe resulting data file is relatively simple, comprised of only seven columns, with each row representing an individual trading day going back to five years."
+    "text": "Background on the data\n\nFor this analysis, we’ll be using historical time-series stock data for Apple listed on the NASDAQ Stock Exchange and General Motors, which is listed on the New York Stock Exchange.\nThe data is sourced from Yahoo Finance using the yfinance package in python.\nThe resulting data file is relatively simple, comprised of only seven columns, with each row representing an individual trading day going back to five years.\nOur resulting dataset contains 1,238 trading days."
   },
   {
     "objectID": "slides.html#variables",
     "href": "slides.html#variables",
     "title": "LSTM Recurrent Neural Networks",
     "section": "Variables",
-    "text": "Variables\n\nDate : This represents a specific trading day that the market was at least partially open.\nOpen : The price at the time of market opening on the given day.\nHigh : The highest price that the stock reached on the given day.\nLow : The lowest price that the stock reached on the given day.\nClose : The price at the time of market closing on the given day."
+    "text": "Variables\n\nDate : This represents a specific trading day that the market was at least partially open.\nOpen : The price at the time of market opening on the given day.\nHigh : The highest price that the stock reached on the given day.\nLow : The lowest price that the stock reached on the given day.\nClose : The price at the time of market closing on the given day.\nAdj Close : The closing stock price adjusted for any corporate actions such as dividends and stock splits.\nVolume : The total number of shares traded on the given day."
   },
   {
     "objectID": "slides.html#data-summary",
@@ -88,21 +88,21 @@
     "href": "slides.html#forget-gate",
     "title": "LSTM Recurrent Neural Networks",
     "section": "Forget Gate",
-    "text": "Forget Gate\n\nThe forget gate is responsible for discarding the information which is not gonna used in the next steps.\nThe closer the value of the information passed through the forget is to 0, the more likely is to be forgotten."
+    "text": "Forget Gate\n\nThe forget gate determines which information is discarded from the previous hidden state and current input.\nThe closer the value of the information passed through the forget is to 0, the more likely is to be forgotten."
   },
   {
     "objectID": "slides.html#input-gate",
     "href": "slides.html#input-gate",
     "title": "LSTM Recurrent Neural Networks",
     "section": "Input Gate",
-    "text": "Input Gate\n\nThe input gate charge of choosing which new data points to include in the cell state at a certain time step.\nThe input gate regulates the information flow by producing values between 0 and 1 using a sigmoid activation function."
+    "text": "Input Gate\n\nThe input gate is in charge of regulating which new information points to include in the network’s memory cell state.\nThe input gate regulates the information flow by using the sigmoid function and the tanh function."
   },
   {
     "objectID": "slides.html#output-gate",
     "href": "slides.html#output-gate",
     "title": "LSTM Recurrent Neural Networks",
     "section": "Output Gate",
-    "text": "Output Gate\n\nThe output gate decides which cell state data should be carried over to the following time step and added to the network’s output\nIt makes use of a sigmoid activation function and is essential to the LSTM’s capacity to provide outputs that are aware of context."
+    "text": "Output Gate\n\nThe output gate decides which memory cell data should be carried over to the following time step and added to the network’s output\nIt makes use of a sigmoid activation function."
   },
   {
     "objectID": "slides.html#implentation",
@@ -215,5 +215,33 @@
     "title": "LSTM Recurrent Neural Networks",
     "section": "Conclusion Cont.",
     "text": "Conclusion Cont.\n\nUltimately, our research and experiment has found that LSTM models do possess predictive capability when it comes to the financial markets, but that more research must be done before such models can have a major impact on financial markets."
+  },
+  {
+    "objectID": "slides.html#application-of-lstms",
+    "href": "slides.html#application-of-lstms",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "Application of LSTMs",
+    "text": "Application of LSTMs\n\nWe plan on putting an LSTM model to the test by seeing how accurately it can predict financial time series data.\nWhile modeling financial data is an extremely difficult task due to the unpredictability of financial markets, we will explore whether they hold any potential to accurately predict short and medium term movements in stock prices."
+  },
+  {
+    "objectID": "slides.html#rnn",
+    "href": "slides.html#rnn",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "RNN",
+    "text": "RNN\n\nRecurrent Neural Networks (RNNs) are a type of artificial neural network designed for processing sequential data.\nThe fundamental idea behind an RNN is to maintain a hidden state vector that gets updated at each time step, incorporating information from both the current input and the previous hidden state.\nMost ANN’s are feed-forward neural networks, so they are all fully connected and loop free.\nRNN’s also need to be trained differently, as backpropgation on its own does not feed any information back to previous steps."
+  },
+  {
+    "objectID": "slides.html#rnn-1",
+    "href": "slides.html#rnn-1",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "RNN",
+    "text": "RNN\n\nUnlike ANN’s, a RNN uses a circular connection to previous steps, therefore going back in time."
+  },
+  {
+    "objectID": "slides.html#rnn-2",
+    "href": "slides.html#rnn-2",
+    "title": "LSTM Recurrent Neural Networks",
+    "section": "RNN",
+    "text": "RNN\n\nTraditional RNNS still run into the issue of vanishing gradients.\nVanishing gradient problem occurs when the gradients become too small due to back propagation.\nIt’s particularly problematic in deep networks where gradients can diminish exponentially as they are backpropagated through time, making it difficult for the model to learn long-range dependencies in sequential data.\nAn LSTM is a form of RNN."
   }
 ]
