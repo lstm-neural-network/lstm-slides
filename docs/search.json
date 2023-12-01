@@ -39,7 +39,7 @@
     "href": "slides.html#gates",
     "title": "LSTM Recurrent Neural Networks",
     "section": "Gates",
-    "text": "Gates\n\nThe gates are responsible for processing and regulating the information flowing in and out of the cell.\nThey are composed of four gates;input gate, the output gate and a forget gate."
+    "text": "Gates\n\nThe gates are responsible for processing and regulating the information flowing in and out of the cell.\nThey are composed of three gates;input gate, the output gate and a forget gate."
   },
   {
     "objectID": "slides.html#activation-functions",
@@ -51,9 +51,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "lstm-book",
+    "title": "lstm-slides",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "This is the website for the LSTM Neural Network Slides"
   },
   {
     "objectID": "about.html",

@@ -34,7 +34,6 @@ format: revealjs
 
 -   Our resulting dataset contains 1,238 trading days.
 
-
 ## Variables
 
 -   **Date** : This represents a specific trading day that the market was at least partially open.
@@ -107,7 +106,7 @@ format: revealjs
 
 -   The gates are responsible for processing and regulating the information flowing in and out of the cell.
 
--   They are composed of four gates;input gate, the output gate and a forget gate.
+-   They are composed of three gates;input gate, the output gate and a forget gate.
 
     ![](/lstm.jpeg){width="500" fig-align="center"}
 
@@ -245,3 +244,5 @@ LSTM_modelApple = ke.Sequential() LSTM_modelApple.add(LSTM(128, return_sequences
 ## Conclusion Cont.
 
 -   Ultimately, our research and experiment has found that LSTM models do possess predictive capability when it comes to the financial markets, but that more research must be done before such models can have a major impact on financial markets.
+
+    ![](/last%20slide.JPG)

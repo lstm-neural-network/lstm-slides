@@ -3,14 +3,13 @@ project:
   output-dir: docs
 
 website:
-  title: "lstm-book"
+  title: "LSTM Slides"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
       - href: slides.qmd
-        text: presentation
+        text: Slides
       
 
 format:
